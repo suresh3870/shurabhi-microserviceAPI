@@ -6,6 +6,7 @@ import org.springframework.security.core.GrantedAuthority;
 import javax.persistence.*;
 
 
+
 @Table(name = "users", uniqueConstraints = {@UniqueConstraint(columnNames = {"username"})})
 @Entity
 public class User {
