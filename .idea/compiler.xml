@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="shurabhi-discount" />
+        <module name="shurabhi-offline" />
+        <module name="shurabhi-server" />
+        <module name="shurabhi-user" />
+        <module name="shurabhi-admin" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="shurabhi-admin" target="1.8" />
+      <module name="shurabhi-discount" target="1.8" />
+      <module name="shurabhi-offline" target="1.8" />
+      <module name="shurabhi-server" target="1.8" />
+      <module name="shurabhi-user" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="shurabhi-admin" options="-parameters" />
+      <module name="shurabhi-discount" options="-parameters" />
+      <module name="shurabhi-offline" options="-parameters" />
+      <module name="shurabhi-server" options="-parameters" />
+      <module name="shurabhi-user" options="-parameters" />
+    </option>
+  </component>
+</project>

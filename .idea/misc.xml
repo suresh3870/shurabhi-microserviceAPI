@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/shurabhi-server/pom.xml" />
+        <option value="$PROJECT_DIR$/shurabhi-admin/pom.xml" />
+        <option value="$PROJECT_DIR$/shurabhi-discount/pom.xml" />
+        <option value="$PROJECT_DIR$/shurabhi-user/pom.xml" />
+        <option value="$PROJECT_DIR$/shurabhi-offline/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/shurabhi-admin/shurabhi-admin.iml" filepath="$PROJECT_DIR$/shurabhi-admin/shurabhi-admin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/shurabhi-discount/shurabhi-discount.iml" filepath="$PROJECT_DIR$/shurabhi-discount/shurabhi-discount.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/shurabhi-microServiceAPIs.iml" filepath="$PROJECT_DIR$/.idea/shurabhi-microServiceAPIs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/shurabhi-offline/shurabhi-offline.iml" filepath="$PROJECT_DIR$/shurabhi-offline/shurabhi-offline.iml" />
+      <module fileurl="file://$PROJECT_DIR$/shurabhi-server/shurabhi-server.iml" filepath="$PROJECT_DIR$/shurabhi-server/shurabhi-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/shurabhi-user/shurabhi-user.iml" filepath="$PROJECT_DIR$/shurabhi-user/shurabhi-user.iml" />
+    </modules>
+  </component>
+</project>
