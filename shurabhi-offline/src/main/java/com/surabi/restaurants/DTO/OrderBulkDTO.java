@@ -5,6 +5,10 @@ public class OrderBulkDTO {
     private int menuID;
     private int qty;
 
+    public OrderBulkDTO() {
+
+    }
+
     public int getMenuID() {
         return menuID;
     }

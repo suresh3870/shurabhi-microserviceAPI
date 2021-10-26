@@ -21,7 +21,10 @@ public class AuditLog {
 	@Column
 	private String user_created;
 
-	public Integer getId() {
+    public AuditLog(Date date, String s) {
+    }
+
+    public Integer getId() {
 		return id;
 	}
 

@@ -1,6 +1,7 @@
 package com.surabi.restaurants.controller;
 
 import com.surabi.restaurants.DTO.BillDetailsDTO;
+import com.surabi.restaurants.DTO.BillOrderDetailsDTO;
 import com.surabi.restaurants.DTO.OrderBulkDTO;
 import com.surabi.restaurants.entity.Menu;
 import com.surabi.restaurants.response.APIResponse;
@@ -35,7 +36,7 @@ public class UsersController {
     //	 return "Order not created as menu ID does not exist";
     //}
 
-    @PostMapping("/Order")
+    @PostMapping(value = "/Order", consumes = "application/json", produces = "application/json")
     public String order(@RequestBody List<OrderBulkDTO> orderBulkDTO) {
         return restaurantsService.createBulkItem(orderBulkDTO);
     }
@@ -51,7 +52,7 @@ public class UsersController {
     //}
 
     @GetMapping("/ViewMyBill")
-    public APIResponse<List<BillDetailsDTO>> ViewMyBill(int billID) {
+    public BillOrderDetailsDTO ViewMyBill(int billID) {
         return restaurantsService.viewMyBill(billID);
     }
 

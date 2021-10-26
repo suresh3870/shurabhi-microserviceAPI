@@ -9,7 +9,6 @@ import com.surabi.restaurants.repository.BillRepository;
 import com.surabi.restaurants.repository.MenuRepository;
 import com.surabi.restaurants.repository.OrderDetailsRepository;
 import com.surabi.restaurants.repository.OrderRepository;
-import com.surabi.restaurants.response.APIResponse;
 import com.surabi.restaurants.service.RestaurantsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -67,7 +66,7 @@ public class RestaurantServiceImpl implements RestaurantsService {
             OrderDetails orderDetails = new OrderDetails();
             User user = new User();
             orders.setOrderDate(date);
-            user.setUsername(UserLoggedDetailsImpl.getMyDetails());
+            user.setUsername("ram");
             orders.setUser(user);
             orderDetails.setQuantity(qty);
             orderDetails.setOrders(orders);
@@ -91,7 +90,7 @@ public class RestaurantServiceImpl implements RestaurantsService {
         Orders orders = new Orders();
         User user = new User();
         orders.setOrderDate(date);
-        user.setUsername(UserLoggedDetailsImpl.getMyDetails());
+        user.setUsername("ram");
         orders.setUser(user);
         Orders savedOrder = orderRepository.save(orders);
         savedOrderID = savedOrder.getOrderId();
@@ -130,12 +129,12 @@ public class RestaurantServiceImpl implements RestaurantsService {
             bill.setBillAmount(amt);
             System.out.println("Bill ID: " + bill.getBillID());
             if (!billRepository.existsById(bill.getBillID())) {
-                String loggedUser = UserLoggedDetailsImpl.getMyDetails();
-                String role = UserLoggedDetailsImpl.getUserRole().toString();
+                String loggedUser = "ram";
+                String role = "ADMIN";
                 System.out.println("Logged user role is "+role);
                 Orders dborders = orderRepository.getOne(orderId);
                 User orderUserDetails = dborders.getUser();
-                String orderUser = orderUserDetails.getUsername();
+                String orderUser = "ram";
                 if (orderUser == loggedUser || role.equals("[ADMIN]")) {
                     Bill savedBillId = billRepository.save(bill);
                     int billid = savedBillId.getBillID();
@@ -151,23 +150,23 @@ public class RestaurantServiceImpl implements RestaurantsService {
     }
 
     @Override
-    public APIResponse<List<BillDetailsDTO>> viewMyBill(int billID) {
+    public BillOrderDetailsDTO viewMyBill(int billID) {
         List<BillDetailsDTO> billDetailsDTOS = new ArrayList<>();
         if (billRepository.existsById(billID)) {
             Orders orders = orderRepository.getOne(billID);
-            String user = UserLoggedDetailsImpl.getMyDetails();
+            String user = "ram";
             User orderUser = orders.getUser();
             String orderUser1 = orderUser.getUsername();
             System.out.println("users from DB for order is: " + orderUser);
-            if (user == orderUser1) {
+            if (user.equals(orderUser1)) {
                 Query nativeQuery = entityManager.createNativeQuery("select b.BILLID as BILL_ID,  u.USERNAME as USERNAME, m.ITEM as ITEM,  d.QUANTITY as QTY, m.PRICE as PRICE, d.ITEM_TOTALPRICE as ITEM_TOTALPRICE,b.BILL_AMOUNT as BILL_AMOUNT from menu m, orders o, ORDER_DETAILS d, users u , BILL b where m.menu_id=d.menu_id  and o.ORDER_ID=d.ORDER_ID and u.USERNAME=o.USERNAME  \n" +
                         "                        and b.ORDER_ID=O.ORDER_ID\n" +
                         "                        and o.ORDER_ID=1", "BillDTOMapping");
                 List<BillDetailsDTO> list = nativeQuery.getResultList();
                 BillOrderDetailsDTO billOrderDetailsDTO = new BillOrderDetailsDTO();
-                BillDetailsDTO billDetailsDTO = list.get(1);
+                BillDetailsDTO billDetailsDTO = list.get(0);
                 billOrderDetailsDTO.setBILL_ID(billDetailsDTO.getBILL_ID());
-                billOrderDetailsDTO.setUSERNAME(billDetailsDTO.getUSERNAME());
+                billOrderDetailsDTO.setUSERNAME("ram");
                 billOrderDetailsDTO.setBILL_AMOUNT(billDetailsDTO.getBILL_AMOUNT());
                 List<BillDetailDTO> orderDetailDTO = new ArrayList<>();
                 for (BillDetailsDTO billDetailsDTO1 : list) {
@@ -179,12 +178,12 @@ public class RestaurantServiceImpl implements RestaurantsService {
                     orderDetailDTO.add(billDetailDTO1);
                 }
                 billOrderDetailsDTO.setBillDetailDTO(orderDetailDTO);
-                return new APIResponse("200", "success!", billOrderDetailsDTO);
+                return billOrderDetailsDTO;
             } else {
-                return new APIResponse("400", "Bill ID: " + billID + " does not belongs to you!", billDetailsDTOS);
+                return null;
             }
         } else {
-            return new APIResponse("400", "Bill ID: " + billID + " does not exist", billDetailsDTOS);
+            return null;
         }
     }
 

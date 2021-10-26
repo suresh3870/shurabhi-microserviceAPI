@@ -1,10 +1,9 @@
 package com.surabi.restaurants.service;
 
-import com.surabi.restaurants.DTO.BillDetailsDTO;
+import com.surabi.restaurants.DTO.BillOrderDetailsDTO;
 import com.surabi.restaurants.DTO.OrderBulkDTO;
 import com.surabi.restaurants.entity.Menu;
 import com.surabi.restaurants.entity.Orders;
-import com.surabi.restaurants.response.APIResponse;
 
 import java.util.List;
 import java.util.Optional;
@@ -23,5 +22,5 @@ public interface RestaurantsService {
 
     String checkOut(int orderId);
 
-    public APIResponse<List<BillDetailsDTO>> viewMyBill(int billID);
+    public BillOrderDetailsDTO viewMyBill(int billID);
 }
