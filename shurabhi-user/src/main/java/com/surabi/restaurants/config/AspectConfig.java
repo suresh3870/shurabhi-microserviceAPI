@@ -3,7 +3,6 @@ package com.surabi.restaurants.config;
 import com.surabi.restaurants.entity.AuditLog;
 import com.surabi.restaurants.repository.AuditRepository;
 import com.surabi.restaurants.serviceimpl.UserLoggedDetailsImpl;
-import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
