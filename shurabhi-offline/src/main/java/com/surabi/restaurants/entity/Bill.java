@@ -1,6 +1,7 @@
 package com.surabi.restaurants.entity;
 import com.surabi.restaurants.DTO.BillDTO;
 import com.surabi.restaurants.DTO.BillDetailsDTO;
+import com.surabi.restaurants.Enum.PaymentMode;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -40,6 +41,15 @@ public class Bill {
     private double billAmount;
     @Temporal(TemporalType.TIMESTAMP)
     public Date billDate;
+    public String paidBy;
+
+    public String getPaidBy() {
+        return paidBy;
+    }
+
+    public void setPaidBy(String paidBy) {
+        this.paidBy = paidBy;
+    }
 
     public int getBillID() {
         return billID;

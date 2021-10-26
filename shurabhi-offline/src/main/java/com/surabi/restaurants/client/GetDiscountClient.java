@@ -14,9 +14,12 @@ public class GetDiscountClient {
     @Autowired
     private RestTemplate template;
 
-    public double getDiscount() {
-        String url = "http://localhost:9996/discount/getDiscount/1500/GET50PER";
-        return template.getForObject(url, double.class);
+    public double getDiscount(int amount, String code) {
+        if (code.equals("GET50PER")) {
+            String url = "http://localhost:9996/discount/getDiscount/" + amount + "/GET50PER";
+            System.out.println(url);
+            return template.getForObject(url, double.class);
+        }
+        else return amount;
     }
-
 }
