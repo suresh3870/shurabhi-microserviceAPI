@@ -1,0 +1,3 @@
+com\surabi\restaurants\config\SwaggerConfig.class
+com\surabi\restaurants\SurabiRestaurantsDiscountApplication.class
+com\surabi\restaurants\controller\DiscountServiceController.class
