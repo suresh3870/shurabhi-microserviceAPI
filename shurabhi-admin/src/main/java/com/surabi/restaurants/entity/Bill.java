@@ -1,4 +1,5 @@
 package com.surabi.restaurants.entity;
+
 import com.surabi.restaurants.DTO.BillDTO;
 import com.surabi.restaurants.DTO.BillDetailsDTO;
 
@@ -14,7 +15,8 @@ import java.util.Date;
                                 @ColumnResult(name="QTY", type = Integer.class),
                                 @ColumnResult(name="PRICE", type = Integer.class),
                                 @ColumnResult(name="ITEM_TOTALPRICE", type = Integer.class),
-                                @ColumnResult(name="BILL_AMOUNT", type = double.class)
+                                @ColumnResult(name="BILL_AMOUNT", type = double.class),
+                                @ColumnResult(name="PAID_BY", type = String.class)
                         }
                 )})
 
@@ -40,6 +42,15 @@ public class Bill {
     private double billAmount;
     @Temporal(TemporalType.TIMESTAMP)
     public Date billDate;
+    public String paidBy;
+
+    public String getPaidBy() {
+        return paidBy;
+    }
+
+    public void setPaidBy(String paidBy) {
+        this.paidBy = paidBy;
+    }
 
     public int getBillID() {
         return billID;

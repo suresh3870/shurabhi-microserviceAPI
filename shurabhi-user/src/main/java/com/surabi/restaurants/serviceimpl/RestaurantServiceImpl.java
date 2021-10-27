@@ -166,10 +166,11 @@ public class RestaurantServiceImpl implements RestaurantsService {
             if (user.equals(orderUser1)) {
                 Query nativeQuery = entityManager.createNativeQuery("select b.BILLID as BILL_ID,  u.USERNAME as USERNAME, m.ITEM as ITEM,  d.QUANTITY as QTY, m.PRICE as PRICE, d.ITEM_TOTALPRICE as ITEM_TOTALPRICE,b.BILL_AMOUNT as BILL_AMOUNT, b.PAID_BY as PAID_BY from menu m, orders o, ORDER_DETAILS d, users u , BILL b where m.menu_id=d.menu_id  and o.ORDER_ID=d.ORDER_ID and u.USERNAME=o.USERNAME  \n" +
                         "                        and b.ORDER_ID=O.ORDER_ID\n" +
-                        "                        and o.ORDER_ID=1", "BillDTOMapping");
+                        "                        and o.ORDER_ID=?1", "BillDTOMapping");
+                nativeQuery.setParameter(1, billID);
                 List<BillDetailsDTO> list = nativeQuery.getResultList();
                 BillOrderDetailsDTO billOrderDetailsDTO = new BillOrderDetailsDTO();
-                BillDetailsDTO billDetailsDTO = list.get(1);
+                BillDetailsDTO billDetailsDTO = list.get(0);
                 billOrderDetailsDTO.setBILL_ID(billDetailsDTO.getBILL_ID());
                 billOrderDetailsDTO.setUSERNAME("ram");
                 billOrderDetailsDTO.setBILL_AMOUNT(billDetailsDTO.getBILL_AMOUNT());

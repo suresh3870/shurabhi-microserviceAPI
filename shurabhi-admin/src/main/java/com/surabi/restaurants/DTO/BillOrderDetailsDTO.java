@@ -7,6 +7,16 @@ public class BillOrderDetailsDTO {
     private int BILL_ID;
     private String USERNAME;
     private double BILL_AMOUNT;
+
+    public String getPAYMENT_MODE() {
+        return PAYMENT_MODE;
+    }
+
+    public void setPAYMENT_MODE(String PAYMENT_MODE) {
+        this.PAYMENT_MODE = PAYMENT_MODE;
+    }
+
+    private String PAYMENT_MODE;
     private List<BillDetailDTO> billDetailDTO;
 
     public int getBILL_ID() {
@@ -41,10 +51,11 @@ public class BillOrderDetailsDTO {
         this.billDetailDTO = billDetailDTO;
     }
 
-    public BillOrderDetailsDTO(int BILL_ID, String USERNAME, double BILL_AMOUNT, List<BillDetailDTO> billDetailDTO) {
+    public BillOrderDetailsDTO(int BILL_ID, String USERNAME, double BILL_AMOUNT, String PAYMENT_MODE, List<BillDetailDTO> billDetailDTO) {
         this.BILL_ID = BILL_ID;
         this.USERNAME = USERNAME;
         this.BILL_AMOUNT = BILL_AMOUNT;
+        this.PAYMENT_MODE = PAYMENT_MODE;
         this.billDetailDTO = billDetailDTO;
     }
 
