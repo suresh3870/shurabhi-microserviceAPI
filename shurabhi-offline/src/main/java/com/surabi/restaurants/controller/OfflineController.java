@@ -64,8 +64,8 @@ public class OfflineController {
     }
 
     @PostMapping(value = "/Order")
-    public String checkout(@RequestBody List<OrderBulkDTO> orderBulkDTO) throws URISyntaxException, JsonProcessingException {
-        return userClient.checkout(orderBulkDTO);
+    public String bulkOrder(@RequestBody List<OrderBulkDTO> orderBulkDTO) {
+        return userClient.bulkOrder(orderBulkDTO);
     }
 
     @PostMapping(value = "/BookSeat")
@@ -81,6 +81,11 @@ public class OfflineController {
     @PostMapping(value = "/Payment")
     public String payBill(int billID, PaymentMode paymentMode) {
         return payBill.payBill(billID,paymentMode);
+    }
+
+    @GetMapping(value = "/CheckOut")
+    public String CheckOut(int orderID) {
+        return userClient.checkOut(orderID);
     }
 }
 

@@ -36,12 +36,12 @@ public class UsersController {
     //	 return "Order not created as menu ID does not exist";
     //}
 
-    @PostMapping(value = "/Order", consumes = "application/json", produces = "application/json")
+    @PostMapping(value = "/Order")
     public String order(@RequestBody List<OrderBulkDTO> orderBulkDTO) {
         return restaurantsService.createBulkItem(orderBulkDTO);
     }
 
-    @PostMapping("/CheckOut")
+    @GetMapping("/CheckOut")
     public String checkOut(int orderId) {
         return restaurantsService.checkOut(orderId);
     }

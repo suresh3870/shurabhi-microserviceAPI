@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.util.JSONPObject;
+import com.google.gson.Gson;
 import com.surabi.restaurants.DTO.BillDetailsDTO;
 import com.surabi.restaurants.DTO.BillOrderDetailsDTO;
 import com.surabi.restaurants.DTO.OrderBulkDTO;
@@ -51,14 +52,29 @@ public class UserClient {
         return template.getForObject(url, BillOrderDetailsDTO.class);
 
     }
-    public String checkout(List<OrderBulkDTO> orderBulkDTO) throws URISyntaxException, JsonProcessingException {
-        String url="http://localhost:9998/surabi/users/Order/";
-        List<OrderBulkDTO> newEmployees = new ArrayList<>();
-        newEmployees.add(new OrderBulkDTO(3, 3));
-        newEmployees.add(new OrderBulkDTO(2, 3));
-        return template.postForObject(
-                "http://localhost:9998/surabi/users/Order/",
-                newEmployees,
-                String.class);
+    public String bulkOrder(List<OrderBulkDTO> orderBulkDTO)  {
+        String url="http://localhost:9998/surabi/users/Order";
+        List<OrderBulkDTO> orderList = new ArrayList<>();
+        for(OrderBulkDTO orderBulkDTO1:orderBulkDTO ){
+            OrderBulkDTO orderBulkDTO2= new OrderBulkDTO();
+            orderBulkDTO2.setMenuID(orderBulkDTO1.getMenuID());
+            orderBulkDTO2.setQty(orderBulkDTO1.getQty());
+            orderList.add(orderBulkDTO2);
+        }
+        RestTemplate restTemplate = new RestTemplate();
+        //String requestJson = "{\"queriedQuestion\":\"Is there pain in your hand?\"}";
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        Gson gson = new Gson();
+        String json = gson.toJson(orderList);
+        System.out.println(json);
+        HttpEntity<String> entity = new HttpEntity<String>(json,headers);
+        String answer = restTemplate.postForObject(url, entity, String.class);
+        return answer;
+    }
+    public String checkOut(int orderID) {
+        String url="http://localhost:9998/surabi/users/CheckOut?orderId="+orderID;
+        return template.getForObject(url, String.class);
+
     }
 }
