@@ -1,15 +1,22 @@
 package com.surabi.restaurants.entity;
+import io.swagger.annotations.ApiModelProperty;
+
+
 import javax.persistence.*;
 import java.util.Date;
-import java.util.Objects;
+
 
 @Entity
+
 public class BookSeat {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
+    //@Schema(value = "Some optional property", defaultValue = "foo")
+    @ApiModelProperty(example = "1")
     private int seatId;
 
     @Temporal(TemporalType.TIMESTAMP)
+    @ApiModelProperty(example = "19-Dec-2021")
     public Date bookingDate;
 
     public BookSeat(int seatId, Date bookingDate) {

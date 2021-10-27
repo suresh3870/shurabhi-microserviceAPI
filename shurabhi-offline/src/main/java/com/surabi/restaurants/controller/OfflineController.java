@@ -13,10 +13,7 @@ import com.surabi.restaurants.service.BookSeatService;
 import com.surabi.restaurants.service.FeedBackService;
 import com.surabi.restaurants.service.PayBill;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
 import java.util.List;
@@ -45,15 +42,21 @@ public class OfflineController {
     }
 
     @GetMapping("/getMenuByID/{menuID}")
-    public Menu getMenuByID(int menuID) { return userClient.getMenuByID(menuID); }
+    public Menu getMenuByID(
+            @RequestParam(value = "menuID", defaultValue = "1") int menuID) {
+        return userClient.getMenuByID(menuID);
+    }
 
     @GetMapping("/getDiscount")
-    public double getDiscount(int amount, String code) {
-        return getDiscountClient.getDiscount(amount,code);
+    public double getDiscount(
+            @RequestParam(value = "amount", defaultValue = "50") int amount,
+            @RequestParam(value = "code", defaultValue = "GET50PER") String code) {
+        return getDiscountClient.getDiscount(amount, code);
     }
 
     @GetMapping("/viewBill")
-    public BillOrderDetailsDTO viewBill(int billID) {
+    public BillOrderDetailsDTO viewBill(
+            @RequestParam(value = "billID", defaultValue = "1") int billID) {
         return userClient.viewBill(billID);
     }
 
@@ -73,12 +76,15 @@ public class OfflineController {
     }
 
     @PostMapping(value = "/Payment")
-    public String payBill(int billID, PaymentMode paymentMode) {
-        return payBill.payBill(billID,paymentMode);
+    public String payBill(
+            @RequestParam(value = "billID", defaultValue = "1")
+                    int billID, PaymentMode paymentMode) {
+        return payBill.payBill(billID, paymentMode);
     }
 
     @GetMapping(value = "/CheckOut")
-    public OrderResponse CheckOut(int orderID) {
+    public OrderResponse CheckOut(
+            @RequestParam(value = "orderID", defaultValue = "1") int orderID) {
         return userClient.checkOut(orderID);
     }
 }

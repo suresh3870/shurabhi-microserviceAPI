@@ -1,4 +1,6 @@
 package com.surabi.restaurants.entity;
+import io.swagger.annotations.ApiModelProperty;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Objects;
@@ -8,14 +10,18 @@ public class FeedBack {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
+    @ApiModelProperty(example = "1", hidden = true)
     private int feedBackId;
 
     @Temporal(TemporalType.TIMESTAMP)
+    @ApiModelProperty(example = "17-Dec-2021")
     public Date feedBackDate;
 
+    @ApiModelProperty(example = "1")
     private int ordersID;
-
+    @ApiModelProperty(example = "5")
     private int feedback1to5;
+    @ApiModelProperty(example = "Excellent service!")
     private String feedback;
 
     public int getFeedBackId() {
