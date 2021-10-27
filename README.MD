@@ -16,3 +16,4 @@ In shurabhi - Offline module:(below sequence)
 3. /Payment payBill  -> To pay bill
 4. other module like view bill, book seat, give feedback, view menu etc....
 
+![img.png](img.png)
