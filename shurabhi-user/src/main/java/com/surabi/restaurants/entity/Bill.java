@@ -15,7 +15,8 @@ import java.util.Date;
                                 @ColumnResult(name="QTY", type = Integer.class),
                                 @ColumnResult(name="PRICE", type = Integer.class),
                                 @ColumnResult(name="ITEM_TOTALPRICE", type = Integer.class),
-                                @ColumnResult(name="BILL_AMOUNT", type = double.class)
+                                @ColumnResult(name="BILL_AMOUNT", type = double.class),
+                                @ColumnResult(name="PAID_BY", type = String.class)
                         }
                 )})
 

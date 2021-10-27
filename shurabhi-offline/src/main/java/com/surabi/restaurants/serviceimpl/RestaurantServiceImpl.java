@@ -165,7 +165,7 @@ public class RestaurantServiceImpl implements RestaurantsService {
                         "                        and o.ORDER_ID=1", "BillDTOMapping");
                 List<BillDetailsDTO> list = nativeQuery.getResultList();
                 BillOrderDetailsDTO billOrderDetailsDTO = new BillOrderDetailsDTO();
-                BillDetailsDTO billDetailsDTO = list.get(1);
+                BillDetailsDTO billDetailsDTO = list.get(0);
                 billOrderDetailsDTO.setBILL_ID(billDetailsDTO.getBILL_ID());
                 billOrderDetailsDTO.setUSERNAME(billDetailsDTO.getUSERNAME());
                 billOrderDetailsDTO.setBILL_AMOUNT(billDetailsDTO.getBILL_AMOUNT());
@@ -189,4 +189,3 @@ public class RestaurantServiceImpl implements RestaurantsService {
     }
 
 }
-

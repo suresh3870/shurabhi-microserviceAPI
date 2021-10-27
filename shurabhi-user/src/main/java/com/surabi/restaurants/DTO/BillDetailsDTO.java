@@ -12,10 +12,20 @@ public class BillDetailsDTO {
     private int ITEM_TOTALPRICE;
     private double BILL_AMOUNT;
 
+    public String getPAID_BY() {
+        return PAID_BY;
+    }
+
+    public void setPAID_BY(String PAID_BY) {
+        this.PAID_BY = PAID_BY;
+    }
+
+    private String PAID_BY;
+
     public BillDetailsDTO() {
     }
 
-    public BillDetailsDTO(int BILL_ID, String USERNAME, String ITEM, int QTY, int PRICE, int ITEM_TOTALPRICE, double BILL_AMOUNT) {
+    public BillDetailsDTO(int BILL_ID, String USERNAME, String ITEM, int QTY, int PRICE, int ITEM_TOTALPRICE, double BILL_AMOUNT, String PAID_BY) {
         this.BILL_ID = BILL_ID;
         this.USERNAME = USERNAME;
         this.ITEM = ITEM;
@@ -23,6 +33,7 @@ public class BillDetailsDTO {
         this.PRICE = PRICE;
         this.ITEM_TOTALPRICE = ITEM_TOTALPRICE;
         this.BILL_AMOUNT = BILL_AMOUNT;
+        this.PAID_BY = PAID_BY;
     }
 
     public int getBILL_ID() {

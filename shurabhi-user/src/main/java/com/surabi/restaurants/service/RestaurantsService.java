@@ -2,6 +2,7 @@ package com.surabi.restaurants.service;
 
 import com.surabi.restaurants.DTO.BillOrderDetailsDTO;
 import com.surabi.restaurants.DTO.OrderBulkDTO;
+import com.surabi.restaurants.DTO.OrderResponse;
 import com.surabi.restaurants.entity.Menu;
 import com.surabi.restaurants.entity.Orders;
 
@@ -20,7 +21,7 @@ public interface RestaurantsService {
 
     int createOrder(int menuID, int qty);
 
-    String checkOut(int orderId);
+    OrderResponse checkOut(int orderId);
 
     public BillOrderDetailsDTO viewMyBill(int billID);
 }

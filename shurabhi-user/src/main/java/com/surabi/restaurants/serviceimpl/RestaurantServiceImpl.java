@@ -1,9 +1,6 @@
 package com.surabi.restaurants.serviceimpl;
 
-import com.surabi.restaurants.DTO.BillDetailDTO;
-import com.surabi.restaurants.DTO.BillDetailsDTO;
-import com.surabi.restaurants.DTO.BillOrderDetailsDTO;
-import com.surabi.restaurants.DTO.OrderBulkDTO;
+import com.surabi.restaurants.DTO.*;
 import com.surabi.restaurants.entity.*;
 import com.surabi.restaurants.repository.BillRepository;
 import com.surabi.restaurants.repository.MenuRepository;
@@ -112,7 +109,7 @@ public class RestaurantServiceImpl implements RestaurantsService {
     }
 
     @Override
-    public String checkOut(int orderId) {
+    public OrderResponse checkOut(int orderId) {
         Orders orders = new Orders();
         Date date = new Date();
         orders.setOrderId(orderId);
@@ -138,14 +135,22 @@ public class RestaurantServiceImpl implements RestaurantsService {
                 if (orderUser == loggedUser || role.equals("[ADMIN]")) {
                     Bill savedBillId = billRepository.save(bill);
                     int billid = savedBillId.getBillID();
-                    return "Bill saved with ID " + billid;
+                    OrderResponse orderResponse = new OrderResponse();
+                    orderResponse.setResponse("Bill saved with ID " + billid);
+                    return orderResponse;
                 } else {
-                    return "Order ID: " + orderId + " does not belongs to you, cant checkout!";
+                    OrderResponse orderResponse = new OrderResponse();
+                    orderResponse.setResponse("Order ID: " + orderId + " does not belongs to you, cant checkout!");
+                    return orderResponse;
                 }
             }
-            return "Bill with given order already generated";
+            OrderResponse orderResponse = new OrderResponse();
+            orderResponse.setResponse("Bill with given order already generated");
+            return orderResponse;
         } else {
-            return "Order ID: " + orderId + " does not exist";
+            OrderResponse orderResponse = new OrderResponse();
+            orderResponse.setResponse("Order ID: " + orderId + " does not exist");
+            return orderResponse;
         }
     }
 
@@ -159,15 +164,16 @@ public class RestaurantServiceImpl implements RestaurantsService {
             String orderUser1 = orderUser.getUsername();
             System.out.println("users from DB for order is: " + orderUser);
             if (user.equals(orderUser1)) {
-                Query nativeQuery = entityManager.createNativeQuery("select b.BILLID as BILL_ID,  u.USERNAME as USERNAME, m.ITEM as ITEM,  d.QUANTITY as QTY, m.PRICE as PRICE, d.ITEM_TOTALPRICE as ITEM_TOTALPRICE,b.BILL_AMOUNT as BILL_AMOUNT from menu m, orders o, ORDER_DETAILS d, users u , BILL b where m.menu_id=d.menu_id  and o.ORDER_ID=d.ORDER_ID and u.USERNAME=o.USERNAME  \n" +
+                Query nativeQuery = entityManager.createNativeQuery("select b.BILLID as BILL_ID,  u.USERNAME as USERNAME, m.ITEM as ITEM,  d.QUANTITY as QTY, m.PRICE as PRICE, d.ITEM_TOTALPRICE as ITEM_TOTALPRICE,b.BILL_AMOUNT as BILL_AMOUNT, b.PAID_BY as PAID_BY from menu m, orders o, ORDER_DETAILS d, users u , BILL b where m.menu_id=d.menu_id  and o.ORDER_ID=d.ORDER_ID and u.USERNAME=o.USERNAME  \n" +
                         "                        and b.ORDER_ID=O.ORDER_ID\n" +
                         "                        and o.ORDER_ID=1", "BillDTOMapping");
                 List<BillDetailsDTO> list = nativeQuery.getResultList();
                 BillOrderDetailsDTO billOrderDetailsDTO = new BillOrderDetailsDTO();
-                BillDetailsDTO billDetailsDTO = list.get(0);
+                BillDetailsDTO billDetailsDTO = list.get(1);
                 billOrderDetailsDTO.setBILL_ID(billDetailsDTO.getBILL_ID());
                 billOrderDetailsDTO.setUSERNAME("ram");
                 billOrderDetailsDTO.setBILL_AMOUNT(billDetailsDTO.getBILL_AMOUNT());
+                billOrderDetailsDTO.setPAYMENT_MODE(billDetailsDTO.getPAID_BY());
                 List<BillDetailDTO> orderDetailDTO = new ArrayList<>();
                 for (BillDetailsDTO billDetailsDTO1 : list) {
                     BillDetailDTO billDetailDTO1 = new BillDetailDTO();

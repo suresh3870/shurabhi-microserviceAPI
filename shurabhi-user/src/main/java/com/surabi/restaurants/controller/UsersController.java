@@ -3,6 +3,7 @@ package com.surabi.restaurants.controller;
 import com.surabi.restaurants.DTO.BillDetailsDTO;
 import com.surabi.restaurants.DTO.BillOrderDetailsDTO;
 import com.surabi.restaurants.DTO.OrderBulkDTO;
+import com.surabi.restaurants.DTO.OrderResponse;
 import com.surabi.restaurants.entity.Menu;
 import com.surabi.restaurants.response.APIResponse;
 import com.surabi.restaurants.service.RestaurantsService;
@@ -42,7 +43,7 @@ public class UsersController {
     }
 
     @GetMapping("/CheckOut")
-    public String checkOut(int orderId) {
+    public OrderResponse checkOut(int orderId) {
         return restaurantsService.checkOut(orderId);
     }
 

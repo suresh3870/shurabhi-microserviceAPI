@@ -1,7 +1,7 @@
 package com.surabi.restaurants.entity;
+
 import com.surabi.restaurants.DTO.BillDTO;
 import com.surabi.restaurants.DTO.BillDetailsDTO;
-import com.surabi.restaurants.Enum.PaymentMode;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -15,7 +15,8 @@ import java.util.Date;
                                 @ColumnResult(name="QTY", type = Integer.class),
                                 @ColumnResult(name="PRICE", type = Integer.class),
                                 @ColumnResult(name="ITEM_TOTALPRICE", type = Integer.class),
-                                @ColumnResult(name="BILL_AMOUNT", type = double.class)
+                                @ColumnResult(name="BILL_AMOUNT", type = double.class),
+                                @ColumnResult(name="PAID_BY", type = String.class)
                         }
                 )})
 

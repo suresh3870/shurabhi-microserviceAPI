@@ -1,29 +1,23 @@
 package com.surabi.restaurants.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.surabi.restaurants.DTO.BillDetailsDTO;
 import com.surabi.restaurants.DTO.BillOrderDetailsDTO;
 import com.surabi.restaurants.DTO.OrderBulkDTO;
+import com.surabi.restaurants.DTO.OrderResponse;
 import com.surabi.restaurants.Enum.PaymentMode;
 import com.surabi.restaurants.client.GetDiscountClient;
 import com.surabi.restaurants.client.UserClient;
 import com.surabi.restaurants.entity.BookSeat;
 import com.surabi.restaurants.entity.FeedBack;
 import com.surabi.restaurants.model.Menu;
-import com.surabi.restaurants.response.APIResponse;
 import com.surabi.restaurants.service.BookSeatService;
 import com.surabi.restaurants.service.FeedBackService;
 import com.surabi.restaurants.service.PayBill;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.net.MalformedURLException;
-import java.net.URISyntaxException;
 import java.text.ParseException;
 import java.util.List;
 
@@ -84,7 +78,7 @@ public class OfflineController {
     }
 
     @GetMapping(value = "/CheckOut")
-    public String CheckOut(int orderID) {
+    public OrderResponse CheckOut(int orderID) {
         return userClient.checkOut(orderID);
     }
 }
