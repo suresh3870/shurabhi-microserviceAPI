@@ -41,6 +41,13 @@ public class BillDTO {
         this.BILL_AMOUNT = BILL_AMOUNT;
     }
 
+    public BillDTO(int BILL_ID, String USERNAME, String BILL_DATE, double BILL_AMOUNT) {
+        this.BILL_ID = BILL_ID;
+        this.USERNAME = USERNAME;
+        this.BILL_DATE = BILL_DATE;
+        this.BILL_AMOUNT = BILL_AMOUNT;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

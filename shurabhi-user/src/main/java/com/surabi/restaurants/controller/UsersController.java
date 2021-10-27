@@ -26,7 +26,8 @@ public class UsersController {
     }
 
     @GetMapping("/MenuByID")
-    public Optional<Menu> getItem(int menuID) {
+    public Optional<Menu> getItem(
+            @RequestParam(value = "menuID", defaultValue = "1") int menuID) {
         return restaurantsService.getMenuById(menuID);
     }
     //@GetMapping("/Order")
@@ -43,7 +44,8 @@ public class UsersController {
     }
 
     @GetMapping("/CheckOut")
-    public OrderResponse checkOut(int orderId) {
+    public OrderResponse checkOut(
+            @RequestParam(value = "orderId", defaultValue = "1") int orderId) {
         return restaurantsService.checkOut(orderId);
     }
 
@@ -53,7 +55,8 @@ public class UsersController {
     //}
 
     @GetMapping("/ViewMyBill")
-    public BillOrderDetailsDTO ViewMyBill(int billID) {
+    public BillOrderDetailsDTO ViewMyBill(
+            @RequestParam(value = "billID", defaultValue = "1") int billID) {
         return restaurantsService.viewMyBill(billID);
     }
 
