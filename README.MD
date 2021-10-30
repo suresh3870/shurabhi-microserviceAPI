@@ -1,4 +1,12 @@
 User name and password are same:
+
+Microservice Architecture which is buil using 
+Client Server Pattern, Proxy Pattern, Ports and 
+Adapter Pattern, Discovery Service, 
+Health Check Pattern, Performance Metrics pattern
+
+![img_1.png](img_1.png)
+
 start servers
 1. shurabhi-server -> http://localhost:8761/
 2. shurabhi-discount -> http://localhost:9996/discount/getDiscount/50/GET50PER
@@ -17,3 +25,4 @@ In shurabhi - Offline module:(below sequence)
 4. other module like view bill, book seat, give feedback, view menu etc....
 
 ![img.png](img.png)
+
