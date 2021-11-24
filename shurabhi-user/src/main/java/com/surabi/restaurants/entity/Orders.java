@@ -9,9 +9,7 @@ import java.util.Date;
 public class Orders {
 
     @Id
-    @GeneratedValue (strategy= GenerationType.SEQUENCE, generator="ordSeqGen")
-    @SequenceGenerator(name = "ordSeqGen", sequenceName = "ORD_SEQ_GEN")
-    //@GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private Integer OrderId;
 
     @Temporal(TemporalType.TIMESTAMP)
