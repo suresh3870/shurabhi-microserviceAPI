@@ -1,6 +1,7 @@
 package com.surabi.restaurants.DTO;
 
 
+import com.surabi.restaurants.Enum.City;
 import io.swagger.annotations.ApiModelProperty;
 
 public class OrderBulkDTO {

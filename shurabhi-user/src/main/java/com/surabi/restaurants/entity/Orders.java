@@ -1,4 +1,6 @@
 package com.surabi.restaurants.entity;
+import com.surabi.restaurants.Enum.City;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -18,6 +20,16 @@ public class Orders {
     @ManyToOne
     @JoinColumn(name="username", nullable=false)
     private User user;
+
+    private City city;
+
+    public City getCity() {
+        return city;
+    }
+
+    public void setCity(City city) {
+        this.city = city;
+    }
 
     public Integer getOrderId() {
         return OrderId;
@@ -43,10 +55,11 @@ public class Orders {
         this.user = user;
     }
 
-    public Orders(Integer orderId, Date orderDate, User user) {
+    public Orders(Integer orderId, Date orderDate, User user, City city) {
         OrderId = orderId;
         OrderDate = orderDate;
         this.user = user;
+        this.city = city;
     }
 
     public Orders() {

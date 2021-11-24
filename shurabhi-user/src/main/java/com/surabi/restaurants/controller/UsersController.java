@@ -4,7 +4,7 @@ import com.surabi.restaurants.DTO.BillOrderDetailsDTO;
 import com.surabi.restaurants.DTO.OrderBulkDTO;
 import com.surabi.restaurants.DTO.OrderDetailsDTO;
 import com.surabi.restaurants.DTO.OrderResponse;
-import com.surabi.restaurants.Enum.OrderBy;
+import com.surabi.restaurants.Enum.City;
 import com.surabi.restaurants.entity.Menu;
 import com.surabi.restaurants.service.RestaurantsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,8 +39,8 @@ public class UsersController {
     //}
 
     @PostMapping(value = "/Order")
-    public String order(@RequestBody List<OrderBulkDTO> orderBulkDTO) {
-        return restaurantsService.createBulkItem(orderBulkDTO);
+    public String order(@RequestBody List<OrderBulkDTO> orderBulkDTO, City city) {
+        return restaurantsService.createBulkItem(orderBulkDTO, city);
     }
 
     @GetMapping("/CheckOut")

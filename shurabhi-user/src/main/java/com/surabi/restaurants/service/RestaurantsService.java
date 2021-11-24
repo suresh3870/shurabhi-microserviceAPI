@@ -4,7 +4,7 @@ import com.surabi.restaurants.DTO.BillOrderDetailsDTO;
 import com.surabi.restaurants.DTO.OrderBulkDTO;
 import com.surabi.restaurants.DTO.OrderDetailsDTO;
 import com.surabi.restaurants.DTO.OrderResponse;
-import com.surabi.restaurants.Enum.OrderBy;
+import com.surabi.restaurants.Enum.City;
 import com.surabi.restaurants.entity.Menu;
 import com.surabi.restaurants.entity.Orders;
 
@@ -17,7 +17,7 @@ public interface RestaurantsService {
 
     Optional<Menu> getMenuById(int menuID);
 
-    String createBulkItem(List<OrderBulkDTO> orderBulkDTO);
+    String createBulkItem(List<OrderBulkDTO> orderBulkDTO, City city);
 
     List<Orders> getAllOrders();
 

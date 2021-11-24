@@ -1,6 +1,7 @@
 package com.surabi.restaurants.serviceimpl;
 
 import com.surabi.restaurants.DTO.*;
+import com.surabi.restaurants.Enum.City;
 import com.surabi.restaurants.entity.*;
 import com.surabi.restaurants.repository.BillRepository;
 import com.surabi.restaurants.repository.MenuRepository;
@@ -78,12 +79,13 @@ public class RestaurantServiceImpl implements RestaurantsService {
     }
 
     @Override
-    public String createBulkItem(List<OrderBulkDTO> orderBulkDTO) {
+    public String createBulkItem(List<OrderBulkDTO> orderBulkDTO, City city) {
         int savedOrderID = 0;
         Date date = new Date();
         Orders orders = new Orders();
         User user = new User();
         orders.setOrderDate(date);
+        orders.setCity(city);
         user.setUsername("ram");
         orders.setUser(user);
         Orders savedOrder = orderRepository.save(orders);
