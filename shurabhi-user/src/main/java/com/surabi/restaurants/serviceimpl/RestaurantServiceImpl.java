@@ -85,7 +85,7 @@ public class RestaurantServiceImpl implements RestaurantsService {
         Orders orders = new Orders();
         User user = new User();
         orders.setOrderDate(date);
-        orders.setCity(city);
+        orders.setCity(city.name());
         user.setUsername("ram");
         orders.setUser(user);
         Orders savedOrder = orderRepository.save(orders);

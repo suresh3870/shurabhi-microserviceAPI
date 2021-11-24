@@ -108,3 +108,5 @@ create OR replace view Max_sale_Day AS
 
 
 ALTER TABLE orders ADD COLUMN city VARCHAR;
+
+---Sale by extract(YEAR from bill_date), to_char(bill_date, 'MONTH')

@@ -21,13 +21,13 @@ public class Orders {
     @JoinColumn(name="username", nullable=false)
     private User user;
 
-    private City city;
+    private String city;
 
-    public City getCity() {
+    public String getCity() {
         return city;
     }
 
-    public void setCity(City city) {
+    public void setCity(String city) {
         this.city = city;
     }
 
@@ -55,7 +55,7 @@ public class Orders {
         this.user = user;
     }
 
-    public Orders(Integer orderId, Date orderDate, User user, City city) {
+    public Orders(Integer orderId, Date orderDate, User user, String city) {
         OrderId = orderId;
         OrderDate = orderDate;
         this.user = user;
