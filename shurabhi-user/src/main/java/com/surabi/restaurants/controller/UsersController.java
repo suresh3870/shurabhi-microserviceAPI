@@ -61,17 +61,17 @@ public class UsersController {
     }
 
     @GetMapping("/All_orders")
-    public List<OrderDetailsDTO> all_details() {
+    public List<OrderDetailsDTO> all_Orders() {
     return restaurantsService.getAllOrder();
     }
 
     @GetMapping("/OrderByDate")
-    public List<OrderDetailsDTO> orderByDate(String date) {
+    public List<OrderDetailsDTO> orderByDate(@RequestParam(value = "OrderDate", defaultValue = "2021-11-24")String date) {
         return restaurantsService.getOrderByDate(date);
     }
 
     @GetMapping("/OrderByPrice")
-    public List<OrderDetailsDTO> orderByPrice(Double price) {
+    public List<OrderDetailsDTO> orderByPrice(@RequestParam(value = "Price", defaultValue = "100") Double price) {
         return restaurantsService.getOrderByPrice(price);
     }
 

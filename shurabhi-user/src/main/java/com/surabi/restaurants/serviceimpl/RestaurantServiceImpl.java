@@ -205,12 +205,18 @@ public class RestaurantServiceImpl implements RestaurantsService {
 
     @Override
     public List<OrderDetailsDTO> getOrderByDate(String date) {
-        return null;
+        Query nativeQuery = entityManager.createNativeQuery("select ORDER_ID,ORDER_DATE,USERNAME,QUANTITY,UNIT_PRICE,ITEM_TOTALPRICE,MENU_ID from All_orders where TO_DATE(to_char(order_date,'YYYY-MM-DD'),'YYYY-MM-DD') = to_timestamp(?1, 'YYYY-MM-DD')", "OrderDTOMapping");
+        nativeQuery.setParameter(1, date);
+        List<OrderDetailsDTO> ordersByDate = nativeQuery.getResultList();
+        return ordersByDate;
     }
 
     @Override
     public List<OrderDetailsDTO> getOrderByPrice(Double price) {
-        return null;
+        Query nativeQuery = entityManager.createNativeQuery("select ORDER_ID,ORDER_DATE,USERNAME,QUANTITY,UNIT_PRICE,ITEM_TOTALPRICE,MENU_ID from All_orders where ITEM_TOTALPRICE>= ?1", "OrderDTOMapping");
+        nativeQuery.setParameter(1, price);
+        List<OrderDetailsDTO> ordersByPrice = nativeQuery.getResultList();
+        return ordersByPrice;
     }
 
 
