@@ -1,11 +1,11 @@
 package com.surabi.restaurants.controller;
 
-import com.surabi.restaurants.DTO.BillDetailsDTO;
 import com.surabi.restaurants.DTO.BillOrderDetailsDTO;
 import com.surabi.restaurants.DTO.OrderBulkDTO;
+import com.surabi.restaurants.DTO.OrderDetailsDTO;
 import com.surabi.restaurants.DTO.OrderResponse;
+import com.surabi.restaurants.Enum.OrderBy;
 import com.surabi.restaurants.entity.Menu;
-import com.surabi.restaurants.response.APIResponse;
 import com.surabi.restaurants.service.RestaurantsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -60,9 +60,19 @@ public class UsersController {
         return restaurantsService.viewMyBill(billID);
     }
 
-    //@GetMapping("/MyDetails")
-    //public String mydetails() {
-    //	return UserLoggedDetailsImpl.getMyDetails();
-    //}
+    @GetMapping("/All_orders")
+    public List<OrderDetailsDTO> all_details() {
+    return restaurantsService.getAllOrder();
+    }
+
+    @GetMapping("/OrderByDate")
+    public List<OrderDetailsDTO> orderByDate(String date) {
+        return restaurantsService.getOrderByDate(date);
+    }
+
+    @GetMapping("/OrderByPrice")
+    public List<OrderDetailsDTO> orderByPrice(Double price) {
+        return restaurantsService.getOrderByPrice(price);
+    }
 
 }

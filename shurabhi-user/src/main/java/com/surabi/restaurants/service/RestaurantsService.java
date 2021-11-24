@@ -2,7 +2,9 @@ package com.surabi.restaurants.service;
 
 import com.surabi.restaurants.DTO.BillOrderDetailsDTO;
 import com.surabi.restaurants.DTO.OrderBulkDTO;
+import com.surabi.restaurants.DTO.OrderDetailsDTO;
 import com.surabi.restaurants.DTO.OrderResponse;
+import com.surabi.restaurants.Enum.OrderBy;
 import com.surabi.restaurants.entity.Menu;
 import com.surabi.restaurants.entity.Orders;
 
@@ -24,4 +26,12 @@ public interface RestaurantsService {
     OrderResponse checkOut(int orderId);
 
     public BillOrderDetailsDTO viewMyBill(int billID);
+
+    String getUserDetails();
+
+    List<OrderDetailsDTO> getAllOrder();
+
+    List<OrderDetailsDTO> getOrderByDate(String date);
+
+    List<OrderDetailsDTO> getOrderByPrice(Double price);
 }

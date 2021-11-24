@@ -10,10 +10,7 @@ import com.surabi.restaurants.service.RestaurantsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityNotFoundException;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -193,6 +190,29 @@ public class RestaurantServiceImpl implements RestaurantsService {
             return null;
         }
     }
+
+    @Override
+    public String getUserDetails() {
+        return null;
+    }
+
+    @Override
+    public List<OrderDetailsDTO> getAllOrder() {
+        Query nativeQuery = entityManager.createNativeQuery("select ORDER_ID,ORDER_DATE,USERNAME,QUANTITY,UNIT_PRICE,ITEM_TOTALPRICE,MENU_ID from All_orders", "OrderDTOMapping");
+        List<OrderDetailsDTO> orders = nativeQuery.getResultList();
+        return orders;
+    }
+
+    @Override
+    public List<OrderDetailsDTO> getOrderByDate(String date) {
+        return null;
+    }
+
+    @Override
+    public List<OrderDetailsDTO> getOrderByPrice(Double price) {
+        return null;
+    }
+
 
 }
 

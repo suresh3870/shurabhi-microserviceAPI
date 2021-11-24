@@ -2,6 +2,7 @@ package com.surabi.restaurants.entity;
 
 import com.surabi.restaurants.DTO.BillDTO;
 import com.surabi.restaurants.DTO.BillDetailsDTO;
+import com.surabi.restaurants.DTO.OrderDetailsDTO;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -29,6 +30,19 @@ import java.util.Date;
                                 @ColumnResult(name="BILL_AMOUNT", type = double.class)
                         }
                 )})
+@SqlResultSetMapping(name="OrderDTOMapping",
+        classes = {
+                @ConstructorResult(targetClass = OrderDetailsDTO.class,
+                        columns = {@ColumnResult(name="ORDER_ID", type = Integer.class),
+                                @ColumnResult(name="ORDER_DATE", type = String.class),
+                                @ColumnResult(name="USERNAME", type = String.class),
+                                @ColumnResult(name="QUANTITY", type = Integer.class),
+                                @ColumnResult(name="UNIT_PRICE", type = double.class),
+                                @ColumnResult(name="ITEM_TOTALPRICE", type = double.class),
+                                @ColumnResult(name="MENU_ID", type = Integer.class)
+                        }
+                )})
+
 
 @Entity
 public class Bill {

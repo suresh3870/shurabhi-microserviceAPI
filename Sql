@@ -90,6 +90,6 @@ INSERT INTO USERS VALUES ('ram', 'USER', TRUE, '$2a$10$CEowIBoP73DKZf./TVVLqO.Z2
 INSERT INTO USERS VALUES ('suresh', 'ADMIN', TRUE, '$2a$10$KzQAQ4kAjSBsd.0MiHgyAecxwhj8MZrqju3FcjGrVn0TxWz563Qta');
 INSERT INTO USERS VALUES ('mohan', 'ADMIN', TRUE, '$2a$10$2mT8yco7eGGm/dtUsQffLOXME5aq5sYR9JJpG6xTOtuXGePIBPhUS');
 
-create OR replace view User_orders AS
-(select b.order_id,a.order_date, a.username,b.quantity,b.item_totalprice/b.quantity as "Unit Price",
+create OR replace view All_orders AS
+(select b.order_id,a.order_date, a.username,b.quantity,b.item_totalprice/b.quantity as "unit_price",
  b.item_totalprice,b.menu_id from orders a , order_details b where a.order_id=b.order_id);
