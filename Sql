@@ -96,3 +96,8 @@ create OR replace view Max_sale_Day AS
 
 ALTER TABLE orders ADD COLUMN city VARCHAR;
 
+create OR replace view sale_by_City AS(
+  select sum(b.bill_amount),extract(YEAR from bill_date), to_char(bill_date, 'MONTH'),a.city
+  from orders a , bill b
+  where a.order_id= b.order_id
+  group by extract(YEAR from bill_date), to_char(bill_date, 'MONTH'), a.city);
