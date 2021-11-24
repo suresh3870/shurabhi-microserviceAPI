@@ -69,7 +69,7 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public double totalSellByMonth(int monthID) {
-        Query nativeQuery = entityManager.createNativeQuery("select sum(bill_amount) from bill where month(bill_date)=?1");
+        Query nativeQuery = entityManager.createNativeQuery("select sum(bill_amount) from bill where extract(MONTH from bill_date)=?1");
         nativeQuery.setParameter(1, monthID);
         List amount = nativeQuery.getResultList();
         double amt= (double) amount.get(0);
@@ -80,7 +80,7 @@ public class AdminServiceImpl implements AdminService {
     public List<BillDTO>  viewTodayBills() {
         Query nativeQuery = entityManager.createNativeQuery("select distinct b.BILLID as BILL_ID,  u.USERNAME as USERNAME, b.BILL_DATE as BILL_DATE ,b.BILL_AMOUNT as BILL_AMOUNT from  users u , BILL b, ORDERS o where  u.USERNAME=o.USERNAME  \n" +
                 "and o.username=u.username\n" +
-                "and CAST(b.BILL_DATE as DATE)=TODAY","BillViewMapping" );
+                "and CAST(b.BILL_DATE as DATE)=CURRENT_DATE","BillViewMapping" );
         List<BillDTO> list =  nativeQuery.getResultList();
         return list;
     }
