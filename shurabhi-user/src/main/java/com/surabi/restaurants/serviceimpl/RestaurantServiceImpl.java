@@ -158,11 +158,10 @@ public class RestaurantServiceImpl implements RestaurantsService {
         List<BillDetailsDTO> billDetailsDTOS = new ArrayList<>();
         if (billRepository.existsById(billID)) {
             Orders orders = orderRepository.getOne(billID);
-            String user = "ram";
             User orderUser = orders.getUser();
             String orderUser1 = orderUser.getUsername();
             System.out.println("users from DB for order is: " + orderUser);
-            if (user.equals(orderUser1)) {
+
                 Query nativeQuery = entityManager.createNativeQuery("select b.BILLID as BILL_ID,  u.USERNAME as USERNAME, m.ITEM as ITEM,  d.QUANTITY as QTY, m.PRICE as PRICE, d.ITEM_TOTALPRICE as ITEM_TOTALPRICE,b.BILL_AMOUNT as BILL_AMOUNT, b.PAID_BY as PAID_BY from menu m, orders o, ORDER_DETAILS d, users u , BILL b where m.menu_id=d.menu_id  and o.ORDER_ID=d.ORDER_ID and u.USERNAME=o.USERNAME  \n" +
                         "                        and b.ORDER_ID=O.ORDER_ID\n" +
                         "                        and o.ORDER_ID=?1", "BillDTOMapping");
@@ -188,9 +187,7 @@ public class RestaurantServiceImpl implements RestaurantsService {
             } else {
                 return null;
             }
-        } else {
-            return null;
-        }
+
     }
 
     @Override
