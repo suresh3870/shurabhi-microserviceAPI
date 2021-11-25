@@ -25,6 +25,7 @@ com\surabi\restaurants\serviceimpl\UserServiceImpl.class
 com\surabi\restaurants\client\GetDiscountClient.class
 com\surabi\restaurants\config\SwaggerConfig.class
 com\surabi\restaurants\service\FeedBackService.class
+com\surabi\restaurants\Enum\City.class
 com\surabi\restaurants\repository\FeedBackRepo.class
 com\surabi\restaurants\DTO\BillDTO.class
 com\surabi\restaurants\repository\UserRepository.class
