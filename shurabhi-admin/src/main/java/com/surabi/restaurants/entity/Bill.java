@@ -2,6 +2,8 @@ package com.surabi.restaurants.entity;
 
 import com.surabi.restaurants.DTO.BillDTO;
 import com.surabi.restaurants.DTO.BillDetailsDTO;
+import com.surabi.restaurants.DTO.MaxSaleDayDTO;
+import com.surabi.restaurants.DTO.SaleDTO;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -27,6 +29,24 @@ import java.util.Date;
                                 @ColumnResult(name="USERNAME", type = String.class),
                                 @ColumnResult(name="BILL_DATE", type = String.class),
                                 @ColumnResult(name="BILL_AMOUNT", type = double.class)
+                        }
+                )})
+@SqlResultSetMapping(name="SaleDTOMapping",
+        classes = {
+                @ConstructorResult(targetClass = SaleDTO.class,
+                        columns = {@ColumnResult(name="sum", type = double.class),
+                                @ColumnResult(name="extract", type = String.class),
+                                @ColumnResult(name="to_char", type = String.class),
+                                @ColumnResult(name="city", type = String.class)
+                        }
+                )})
+
+@SqlResultSetMapping(name="MaxSaleDTOMapping",
+        classes = {
+                @ConstructorResult(targetClass = MaxSaleDayDTO.class,
+                        columns = {@ColumnResult(name="max", type = double.class),
+                                @ColumnResult(name="extract", type = Integer.class),
+                                @ColumnResult(name="to_char", type = String.class)
                         }
                 )})
 

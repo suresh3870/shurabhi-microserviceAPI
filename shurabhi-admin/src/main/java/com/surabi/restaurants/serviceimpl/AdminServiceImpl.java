@@ -1,6 +1,8 @@
 package com.surabi.restaurants.serviceimpl;
 
 import com.surabi.restaurants.DTO.BillDTO;
+import com.surabi.restaurants.DTO.MaxSaleDayDTO;
+import com.surabi.restaurants.DTO.SaleDTO;
 import com.surabi.restaurants.entity.User;
 import com.surabi.restaurants.repository.BillRepository;
 import com.surabi.restaurants.repository.UserRepository;
@@ -68,9 +70,10 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public double totalSellByMonth(int monthID) {
-        Query nativeQuery = entityManager.createNativeQuery("select sum(bill_amount) from bill where extract(MONTH from bill_date)=?1");
+    public double totalSellByMonth(int monthID, int year) {
+        Query nativeQuery = entityManager.createNativeQuery("select sum(bill_amount) from bill where extract(MONTH from bill_date)=?1 and extract(YEAR from bill_date)=?2");
         nativeQuery.setParameter(1, monthID);
+        nativeQuery.setParameter(2, year);
         List amount = nativeQuery.getResultList();
         double amt= (double) amount.get(0);
         return amt;
@@ -83,5 +86,26 @@ public class AdminServiceImpl implements AdminService {
                 "and CAST(b.BILL_DATE as DATE)=CURRENT_DATE","BillViewMapping" );
         List<BillDTO> list =  nativeQuery.getResultList();
         return list;
+    }
+
+    @Override
+    public List<SaleDTO> viewSaleByCity() {
+        Query nativeQuery = entityManager.createNativeQuery("select sum,extract, to_char, city from sale_by_City", "SaleDTOMapping");
+        List<SaleDTO> saleResult = nativeQuery.getResultList();
+        return saleResult;
+    }
+
+    @Override
+    public List<MaxSaleDayDTO> viewSaleByMonth() {
+        Query nativeQuery = entityManager.createNativeQuery("select max,extract, to_char from Max_sale_Month", "MaxSaleDTOMapping");
+        List<MaxSaleDayDTO> maxMonthSaleResult = nativeQuery.getResultList();
+        return maxMonthSaleResult;
+    }
+
+    @Override
+    public List<MaxSaleDayDTO> viewMaxSaleInAMonth() {
+        Query nativeQuery = entityManager.createNativeQuery("select max,extract, to_char from Max_sale_Day", "MaxSaleDTOMapping");
+        List<MaxSaleDayDTO> maxMonthSaleResult = nativeQuery.getResultList();
+        return maxMonthSaleResult;
     }
 }

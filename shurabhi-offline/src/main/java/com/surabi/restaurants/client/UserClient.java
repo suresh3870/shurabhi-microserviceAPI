@@ -5,6 +5,7 @@ import com.google.gson.Gson;
 import com.surabi.restaurants.DTO.BillOrderDetailsDTO;
 import com.surabi.restaurants.DTO.OrderBulkDTO;
 import com.surabi.restaurants.DTO.OrderResponse;
+import com.surabi.restaurants.Enum.City;
 import com.surabi.restaurants.config.RestTemplateConfig;
 import com.surabi.restaurants.model.Menu;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,8 +41,8 @@ public class UserClient {
         return template.getForObject(url, BillOrderDetailsDTO.class);
 
     }
-    public String bulkOrder(List<OrderBulkDTO> orderBulkDTO)  {
-        String url="http://localhost:9998/surabi/users/Order";
+    public String bulkOrder(List<OrderBulkDTO> orderBulkDTO, City city)  {
+        String url="http://localhost:9998/surabi/users/Order?city="+city.name();
         List<OrderBulkDTO> orderList = new ArrayList<>();
         for(OrderBulkDTO orderBulkDTO1:orderBulkDTO ){
             OrderBulkDTO orderBulkDTO2= new OrderBulkDTO();

@@ -5,7 +5,8 @@ import javax.persistence.*;
 @Entity
 public class OrderDetails {
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue (strategy= GenerationType.AUTO, generator="ordSeqGenDet")
+    @SequenceGenerator(name = "ordSeqGenDet", sequenceName = "ord_det_seq",allocationSize = 1,initialValue =20)
     private Integer OrderDetailsID;
 
     @ManyToOne

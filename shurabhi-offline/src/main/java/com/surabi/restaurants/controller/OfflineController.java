@@ -3,6 +3,7 @@ package com.surabi.restaurants.controller;
 import com.surabi.restaurants.DTO.BillOrderDetailsDTO;
 import com.surabi.restaurants.DTO.OrderBulkDTO;
 import com.surabi.restaurants.DTO.OrderResponse;
+import com.surabi.restaurants.Enum.City;
 import com.surabi.restaurants.Enum.PaymentMode;
 import com.surabi.restaurants.client.GetDiscountClient;
 import com.surabi.restaurants.client.UserClient;
@@ -61,8 +62,8 @@ public class OfflineController {
     }
 
     @PostMapping(value = "/Order")
-    public String bulkOrder(@RequestBody List<OrderBulkDTO> orderBulkDTO) {
-        return userClient.bulkOrder(orderBulkDTO);
+    public String bulkOrder(@RequestBody List<OrderBulkDTO> orderBulkDTO, City city) {
+        return userClient.bulkOrder(orderBulkDTO, city);
     }
 
     @PostMapping(value = "/BookSeat")

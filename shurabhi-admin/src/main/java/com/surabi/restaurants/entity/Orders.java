@@ -7,8 +7,8 @@ import java.util.Date;
 public class Orders {
 
     @Id
-    @GeneratedValue (strategy= GenerationType.SEQUENCE, generator="ordSeqGen")
-    @SequenceGenerator(name = "ordSeqGen", sequenceName = "ORD_SEQ_GEN")
+    @GeneratedValue (strategy= GenerationType.AUTO, generator="ordSeqGen")
+    @SequenceGenerator(name = "ordSeqGen", sequenceName = "ord_seq",allocationSize = 1,initialValue =20)
     //@GeneratedValue(strategy=GenerationType.AUTO)
     private Integer OrderId;
 
