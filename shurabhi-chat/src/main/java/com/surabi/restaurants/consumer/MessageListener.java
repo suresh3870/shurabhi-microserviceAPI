@@ -9,7 +9,9 @@ import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.springframework.stereotype.Component;
 
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Properties;
 
 @Component
@@ -38,15 +40,17 @@ public class MessageListener {
     }
 
 
-    public String doWork() {
+    public List<String> doWork() {
         consumer.subscribe(Collections.singletonList(topic));
         ConsumerRecords<Integer, String> records = consumer.poll(Duration.ofMillis(1000));
-        System.out.println("got message from records"+records.count());
+        System.out.println("Number of message/s from records:->  "+records.count());
+        List<String> msgs= new ArrayList<>();
         for (ConsumerRecord<Integer, String> record : records) {
-            return "Received message: (" + record.key() + ", " + record.value() + ") at offset " + record.offset();
+            msgs.add(record.value());
+            System.out.println("Received message: (" + record.key() + ", " + record.value() + ") at offset " + record.offset());
             // System.out.println("Received message: " + record.value() + ") at offset " + record.offset());
         }
-       return null;
+       return msgs;
     }
 
 }

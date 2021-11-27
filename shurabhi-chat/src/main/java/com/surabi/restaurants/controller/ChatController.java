@@ -9,6 +9,7 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 @RestController
@@ -32,7 +33,7 @@ public class ChatController {
     }
 
     @GetMapping(value = "/api/receive")
-    public String receiveMessage() {
+    public List<String> receiveMessage() {
         return exampleConsumer.doWork();
     }
 
