@@ -1,4 +1,4 @@
-package com.shubh.kafkachat.model;
+package com.surabi.restaurants.model;
 
 public class Message {
     private String from;

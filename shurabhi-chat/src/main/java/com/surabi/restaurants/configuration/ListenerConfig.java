@@ -1,8 +1,10 @@
+/*
 package com.surabi.restaurants.configuration;
 
 
-import com.shubh.kafkachat.model.Message;
+
 import com.surabi.restaurants.constants.KafkaConstants;
+import com.surabi.restaurants.model.Message;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 
 import org.apache.kafka.common.serialization.StringDeserializer;
@@ -43,4 +45,4 @@ public class ListenerConfig {
         configurations.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
         return configurations;
     }
-}
+}*/

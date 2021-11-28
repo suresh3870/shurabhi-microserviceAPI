@@ -1,8 +1,8 @@
 package com.surabi.restaurants.controller;
 
-import com.shubh.kafkachat.model.Message;
 import com.surabi.restaurants.constants.KafkaConstants;
 import com.surabi.restaurants.consumer.MessageListener;
+import com.surabi.restaurants.model.Message;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -33,7 +33,7 @@ public class ChatController {
     }
 
     @GetMapping(value = "/api/receive")
-    public List<String> receiveMessage() {
+    public List<Message> receiveMessage() {
         return exampleConsumer.doWork();
     }
 
