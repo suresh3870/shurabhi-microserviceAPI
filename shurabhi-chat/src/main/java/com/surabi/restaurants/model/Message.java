@@ -1,12 +1,14 @@
 package com.surabi.restaurants.model;
 
+import java.io.Serializable;
+
 public class Message {
     private String from;
     private String to;
     private String content;
     private String timestamp;
 
-    public Message() {
+    public Message()  {
     }
 
     public String getTimestamp() {
@@ -49,5 +51,15 @@ public class Message {
         this.to = to;
         this.content = content;
         this.timestamp = timestamp;
+    }
+
+    @Override
+    public String toString() {
+        return "Message{" +
+                "from='" + from + '\'' +
+                ", to='" + to + '\'' +
+                ", content='" + content + '\'' +
+                ", timestamp='" + timestamp + '\'' +
+                '}';
     }
 }

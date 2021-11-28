@@ -35,7 +35,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests().antMatchers("/surabi/admin/**").hasAnyAuthority("ADMIN")
-                //.antMatchers("/surabi/users/**").hasAnyAuthority("ADMIN", "USER")
+                .antMatchers("/surabi/chat-controller/**").hasAnyAuthority("ADMIN", "USER")
                 .antMatchers("/", "/surabi/usersReg").permitAll()
                 .antMatchers("/", "/surabi/users/**").permitAll()
                 .and()

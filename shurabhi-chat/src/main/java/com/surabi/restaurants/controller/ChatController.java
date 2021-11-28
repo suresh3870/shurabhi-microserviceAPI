@@ -1,23 +1,20 @@
 package com.surabi.restaurants.controller;
 
-import com.surabi.restaurants.constants.KafkaConstants;
+import com.surabi.restaurants.consumer.KafkaConsumerExample;
 import com.surabi.restaurants.consumer.MessageListener;
 import com.surabi.restaurants.model.Message;
-import org.apache.kafka.clients.consumer.ConsumerConfig;
-import org.apache.kafka.clients.consumer.ConsumerRecords;
-import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Properties;
 import java.util.concurrent.ExecutionException;
 
 import static com.surabi.restaurants.constants.KafkaConstants.KAFKA_TOPIC;
 
 @RestController
+@RequestMapping("/surabi/chat-controller")
 public class ChatController {
 
     @Autowired
@@ -25,6 +22,10 @@ public class ChatController {
 
     @Autowired
     MessageListener exampleConsumer;
+
+    @Autowired
+    KafkaConsumerExample kafkaConsumerExample;
+
 
     @PostMapping(value = "/api/send", consumes = "application/json", produces = "application/json")
     public void sendMessage(@RequestBody Message message) {
@@ -38,8 +39,8 @@ public class ChatController {
     }
 
     @GetMapping(value = "/api/receive")
-    public List<Message> receiveMessage() {
-        return exampleConsumer.doWork();
+    public List<Message> receiveMessage() throws InterruptedException {
+        return kafkaConsumerExample.runConsumer();
     }
 
 }
