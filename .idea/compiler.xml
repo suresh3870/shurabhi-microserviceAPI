@@ -9,7 +9,6 @@
         <outputRelativeToContentRoot value="true" />
         <module name="shurabhi-discount" />
         <module name="shurabhi-offline" />
-        <module name="shurabhi-user (1)" />
         <module name="shurabhi-server" />
         <module name="shurabhi-user" />
         <module name="shurabhi-admin" />

@@ -8,7 +8,6 @@
       <module fileurl="file://$PROJECT_DIR$/shurabhi-offline/shurabhi-offline.iml" filepath="$PROJECT_DIR$/shurabhi-offline/shurabhi-offline.iml" />
       <module fileurl="file://$PROJECT_DIR$/shurabhi-server/shurabhi-server.iml" filepath="$PROJECT_DIR$/shurabhi-server/shurabhi-server.iml" />
       <module fileurl="file://$PROJECT_DIR$/shurabhi-user/shurabhi-user.iml" filepath="$PROJECT_DIR$/shurabhi-user/shurabhi-user.iml" />
-      <module fileurl="file://$PROJECT_DIR$/shurabhi-chat/shurabhi-user (1).iml" filepath="$PROJECT_DIR$/shurabhi-chat/shurabhi-user (1).iml" />
     </modules>
   </component>
 </project>
