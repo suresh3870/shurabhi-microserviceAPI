@@ -57,12 +57,12 @@ public class KafkaConsumerExample {
             }
 
             for(ConsumerRecord<Integer,Message> record: consumerRecords){
-                System.out.println(record.value().getTo());
-               //if (record.value().getTo().equals(UserLoggedDetailsImpl.getUserName())) {
+                //System.out.println(record.value().getTo());
+               if (record.value().getTo().equals(UserLoggedDetailsImpl.getUserName())) {
                     msgs.add(record.value());
                     System.out.println("Key: " + record.key() + ", Value:" + record.value());
                     System.out.println("Partition:" + record.partition() + ",Offset:" + record.offset());
-              //  }
+               }
             }
 
             consumer.commitAsync();
