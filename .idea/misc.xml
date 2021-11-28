@@ -8,10 +8,11 @@
         <option value="$PROJECT_DIR$/shurabhi-discount/pom.xml" />
         <option value="$PROJECT_DIR$/shurabhi-user/pom.xml" />
         <option value="$PROJECT_DIR$/shurabhi-offline/pom.xml" />
+        <option value="$PROJECT_DIR$/shurabhi-chat/pom.xml" />
       </list>
     </option>
   </component>
-  <component name="ProjectRootManager">
+  <component name="ProjectRootManager" version="2" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>
