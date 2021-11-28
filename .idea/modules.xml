@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/shurabhi-admin/shurabhi-admin.iml" filepath="$PROJECT_DIR$/shurabhi-admin/shurabhi-admin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/shurabhi-chat/shurabhi-chat.iml" filepath="$PROJECT_DIR$/shurabhi-chat/shurabhi-chat.iml" />
       <module fileurl="file://$PROJECT_DIR$/shurabhi-discount/shurabhi-discount.iml" filepath="$PROJECT_DIR$/shurabhi-discount/shurabhi-discount.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/shurabhi-microServiceAPIs.iml" filepath="$PROJECT_DIR$/.idea/shurabhi-microServiceAPIs.iml" />
       <module fileurl="file://$PROJECT_DIR$/shurabhi-offline/shurabhi-offline.iml" filepath="$PROJECT_DIR$/shurabhi-offline/shurabhi-offline.iml" />

@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="shurabhi-discount" />
         <module name="shurabhi-offline" />
+        <module name="shurabhi-chat" />
         <module name="shurabhi-server" />
         <module name="shurabhi-user" />
         <module name="shurabhi-admin" />
@@ -16,6 +17,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="shurabhi-admin" target="1.8" />
+      <module name="shurabhi-chat" target="1.8" />
       <module name="shurabhi-discount" target="1.8" />
       <module name="shurabhi-offline" target="1.8" />
       <module name="shurabhi-server" target="1.8" />
@@ -26,6 +28,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="shurabhi-admin" options="-parameters" />
+      <module name="shurabhi-chat" options="-parameters" />
       <module name="shurabhi-discount" options="-parameters" />
       <module name="shurabhi-offline" options="-parameters" />
       <module name="shurabhi-server" options="-parameters" />
