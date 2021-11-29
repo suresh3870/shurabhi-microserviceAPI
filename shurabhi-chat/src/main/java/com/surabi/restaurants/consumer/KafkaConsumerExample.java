@@ -16,7 +16,7 @@ import java.util.Properties;
 @Component
 public class KafkaConsumerExample {
     public Consumer<Integer, Message> createConsumer() {
-        final Properties props = new Properties();
+        Properties props = new Properties();
         String bootstrapServers="localhost:9092";
         String topic="shurabhi-chat";
         String group_id= UserLoggedDetailsImpl.getUserName();
@@ -26,6 +26,7 @@ public class KafkaConsumerExample {
                 group_id);
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG,
                 "org.apache.kafka.common.serialization.IntegerDeserializer");
+        props.put(JsonDeserializer.TRUSTED_PACKAGES, "com.surabi.restaurants.model");
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG,
                 JsonDeserializer.class);
         props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG,"earliest");
@@ -33,15 +34,14 @@ public class KafkaConsumerExample {
         // Create the consumer using props.
         //KafkaConsumer<Integer, Message> consumer = new KafkaConsumer<>(props,
               //  new IntegerDeserializer(), new KryoPOJODeserializer(Message.class));
-        final Consumer<Integer, Message> consumer = new KafkaConsumer<>(props, new IntegerDeserializer(),
-                new JsonDeserializer(Message.class));
+         Consumer<Integer, Message> consumer = new KafkaConsumer<>(props,new IntegerDeserializer(), new JsonDeserializer<>(Message.class, false));
 
         // Subscribe to the topic.
         consumer.subscribe(Collections.singletonList(topic));
         return consumer;
     }
      public List<Message> runConsumer() throws InterruptedException {
-        final Consumer<Integer, Message> consumer = createConsumer();
+         Consumer<Integer, Message> consumer = createConsumer();
 
         final int giveUp = 2;   int noRecordsCount = 0;
          List<Message> msgs=new ArrayList<>();
