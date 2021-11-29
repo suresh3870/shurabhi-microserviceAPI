@@ -19,11 +19,19 @@ public class KafkaConsumerExample {
         Properties props = new Properties();
         String bootstrapServers="localhost:9092";
         String topic="shurabhi-chat";
-        String group_id= UserLoggedDetailsImpl.getUserName();
+        System.out.println(UserLoggedDetailsImpl.getUserRole().toString());
+        if (UserLoggedDetailsImpl.getUserRole().equals("[ADMIN]")){
+            props.put(ConsumerConfig.GROUP_ID_CONFIG,
+                    "ADMIN");}
+        else
+        {
+            String group_id= UserLoggedDetailsImpl.getUserName();
+            props.put(ConsumerConfig.GROUP_ID_CONFIG,
+                    group_id);
+        }
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG,
                 bootstrapServers);
-        props.put(ConsumerConfig.GROUP_ID_CONFIG,
-                group_id);
+
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG,
                 "org.apache.kafka.common.serialization.IntegerDeserializer");
         props.put(JsonDeserializer.TRUSTED_PACKAGES, "com.surabi.restaurants.model");
@@ -58,7 +66,9 @@ public class KafkaConsumerExample {
 
             for(ConsumerRecord<Integer,Message> record: consumerRecords){
                 //System.out.println(record.value().getTo());
-               if (record.value().getTo().equals(UserLoggedDetailsImpl.getUserName())) {
+
+               if ((record.value().getTo().equals(UserLoggedDetailsImpl.getUserName())) ||
+                       ((record.value().getTo().equals("ADMIN")) && (UserLoggedDetailsImpl.getUserRole().equals("[ADMIN]"))) ) {
                     msgs.add(record.value());
                     System.out.println("Key: " + record.key() + ", Value:" + record.value());
                     System.out.println("Partition:" + record.partition() + ",Offset:" + record.offset());
