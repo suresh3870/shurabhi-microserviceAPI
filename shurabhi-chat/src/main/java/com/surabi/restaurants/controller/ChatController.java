@@ -1,7 +1,6 @@
 package com.surabi.restaurants.controller;
 
 import com.surabi.restaurants.consumer.KafkaConsumerExample;
-import com.surabi.restaurants.consumer.MessageListener;
 import com.surabi.restaurants.model.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -20,8 +19,6 @@ public class ChatController {
     @Autowired
     private KafkaTemplate<String, Message> kafkaTemplate;
 
-    @Autowired
-    MessageListener exampleConsumer;
 
     @Autowired
     KafkaConsumerExample kafkaConsumerExample;
