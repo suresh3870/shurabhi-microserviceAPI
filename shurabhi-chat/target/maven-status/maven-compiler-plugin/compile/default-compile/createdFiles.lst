@@ -9,10 +9,11 @@ com\surabi\restaurants\model\Message.class
 com\surabi\restaurants\serviceimpl\UserLoggedDetailsImpl.class
 com\surabi\restaurants\service\UserService.class
 com\surabi\restaurants\constants\KafkaConstants.class
-com\surabi\restaurants\consumer\MessageListener.class
 com\surabi\restaurants\entity\User.class
+com\surabi\restaurants\consumer\KafkaConsumerExample.class
 com\surabi\restaurants\configuration\ProducerConfiguration.class
 com\surabi\restaurants\configuration\SecurityConfiguration.class
 com\surabi\restaurants\Enum\Authority.class
 com\surabi\restaurants\controller\ChatController.class
 com\surabi\restaurants\serviceimpl\UserServiceImpl.class
+com\surabi\restaurants\controller\HomeController.class
