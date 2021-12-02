@@ -1,18 +1,23 @@
 Week13:
+To run project:
+1.start shurabhi-server:
+2. go to https://localhost:8761/
+3. download certificate
+4. import using below with admin permission
+   keytool -import -file "C:\Users\MS\Desktop\edu2.cer" -keystore "C:\Program Files\Java\jdk1.8.0_191\jre\lib\security\cacerts" -alias "edu2 certificate"
 
-Step:
+5. Create a postgres DB ("shurabhi21"), script in SQL file in the root path.
+6. Start all APIs (ADMIN-SERVICE, CHAT-SERVICE, DISCOUNT-SERVICE, OFFLINE-SERVICE, USER-SERVICE)
+
+![img_4.png](img_4.png)
+
+Steps used to generate certificates:
 Generate all certificate using belowcommand
 example for chat
 keytool -genKey -alias chatkey -keystore chatkeystore -keyalg RSA
 
 for Euraka certificate:
 keytool -genKey -alias demokey -keystore demokeystore -keyalg RSA -ext "SAN:c=DNS:localhost,IP:127.0.0.1"
-
-go to https://localhost:8761/
-download certificate
-import using below with admin permission
-keytool -import -file "C:\Users\MS\Desktop\edu2.cer" -keystore "C:\Program Files\Java\jdk1.8.0_191\jre\lib\security\cacerts" -alias "edu2 certificate"
-
 
 
 
