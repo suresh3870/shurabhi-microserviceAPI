@@ -8,7 +8,13 @@ To run project:
 
 5. Create a postgres DB ("shurabhi21"), script in SQL file in the root path.
 6. Start all APIs (ADMIN-SERVICE, CHAT-SERVICE, DISCOUNT-SERVICE, OFFLINE-SERVICE, USER-SERVICE)
-
+   shurabhi-server -> https://localhost:8761/
+   shurabhi-discount -> https://localhost:9996/discount/getDiscount/50/GET50PER
+   shurabhi-user -> https://localhost:9998/swagger-ui.html#/users-controller
+   shurabhi-offline -> https://localhost:9995/swagger-ui.html#/offline-controller
+   shurabhi-admin -> https://localhost:9999/swagger-ui.html#/admin-controller
+   shurabhi - chat -> https://localhost:9994/swagger-ui.html#
+   
 ![img_4.png](img_4.png)
 
 Steps used to generate certificates:
