@@ -27,22 +27,22 @@ public class UserClient {
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     public List<Menu> getMenuList() {
-        String url = "http://localhost:9998/surabi/users/ListMenu";
+        String url = "https://localhost:9998/surabi/users/ListMenu";
         return template.getForObject(url, List.class);
     }
 
     public Menu getMenuByID(int menuID) {
-        String url = "http://localhost:9998/surabi/users/MenuByID?menuID="+menuID;
+        String url = "https://localhost:9998/surabi/users/MenuByID?menuID="+menuID;
         return template.getForObject(url, Menu.class);
 
     }
     public BillOrderDetailsDTO viewBill(int billID) {
-        String url = "http://localhost:9998/surabi/users/ViewMyBill?billID="+billID;
+        String url = "https://localhost:9998/surabi/users/ViewMyBill?billID="+billID;
         return template.getForObject(url, BillOrderDetailsDTO.class);
 
     }
     public String bulkOrder(List<OrderBulkDTO> orderBulkDTO, City city)  {
-        String url="http://localhost:9998/surabi/users/Order?city="+city.name();
+        String url="https://localhost:9998/surabi/users/Order?city="+city.name();
         List<OrderBulkDTO> orderList = new ArrayList<>();
         for(OrderBulkDTO orderBulkDTO1:orderBulkDTO ){
             OrderBulkDTO orderBulkDTO2= new OrderBulkDTO();
@@ -62,7 +62,7 @@ public class UserClient {
         return answer;
     }
     public OrderResponse checkOut(int orderID) {
-        String url="http://localhost:9998/surabi/users/CheckOut?orderId="+orderID;
+        String url="https://localhost:9998/surabi/users/CheckOut?orderId="+orderID;
         return template.getForObject(url, OrderResponse.class);
 
     }

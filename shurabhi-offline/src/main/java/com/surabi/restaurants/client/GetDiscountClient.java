@@ -16,7 +16,7 @@ public class GetDiscountClient {
 
     public double getDiscount(int amount, String code) {
         if (code.equals("GET50PER")) {
-            String url = "http://localhost:9996/discount/getDiscount/" + amount + "/GET50PER";
+            String url = "https://localhost:9996/discount/getDiscount/" + amount + "/GET50PER";
             System.out.println(url);
             return template.getForObject(url, double.class);
         }

@@ -3,11 +3,16 @@ To run project:
 1.start shurabhi-server:
 2. go to https://localhost:8761/
 3. download certificate
-4. import using below with admin permission
+4. import Euraka using below with admin permission
    keytool -import -file "C:\Users\MS\Desktop\edu2.cer" -keystore "C:\Program Files\Java\jdk1.8.0_191\jre\lib\security\cacerts" -alias "edu2 certificate"
 
-5. Create a postgres DB ("shurabhi21"), script in SQL file in the root path.
-6. Start all APIs (ADMIN-SERVICE, CHAT-SERVICE, DISCOUNT-SERVICE, OFFLINE-SERVICE, USER-SERVICE)
+5. go to https://localhost:9998/swagger-ui.html#
+6. download cert
+7. import shurabhi-user API using below with admin permission
+      keytool -import -file "C:\Users\MS\Desktop\user.cer" -keystore "C:\Program Files\Java\jdk1.8.0_191\jre\lib\security\cacerts" -alias "edu2 certificate"
+
+8. Create a postgres DB ("shurabhi21"), script in SQL file in the root path.
+9. Start all APIs (ADMIN-SERVICE, CHAT-SERVICE, DISCOUNT-SERVICE, OFFLINE-SERVICE, USER-SERVICE)
    shurabhi-server -> https://localhost:8761/
    shurabhi-discount -> https://localhost:9996/discount/getDiscount/50/GET50PER
    shurabhi-user -> https://localhost:9998/swagger-ui.html#/users-controller
@@ -25,7 +30,8 @@ keytool -genKey -alias chatkey -keystore chatkeystore -keyalg RSA
 for Euraka certificate:
 keytool -genKey -alias demokey -keystore demokeystore -keyalg RSA -ext "SAN:c=DNS:localhost,IP:127.0.0.1"
 
-
+for shurabhi-user certificate:(as this is used by offline API)
+keytool -genKey -alias shurabhiuserkey -keystore shurabhiuserkeystore -keyalg RSA -ext "SAN:c=DNS:localhost,IP:127.0.0.1"
 
 Week12:
 
