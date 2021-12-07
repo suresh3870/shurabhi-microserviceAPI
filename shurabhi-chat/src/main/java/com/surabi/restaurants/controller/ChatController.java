@@ -2,12 +2,17 @@ package com.surabi.restaurants.controller;
 
 import com.surabi.restaurants.consumer.KafkaConsumerExample;
 import com.surabi.restaurants.model.Message;
+import org.apache.kafka.clients.producer.KafkaProducer;
+import org.apache.kafka.clients.producer.ProducerRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.FileReader;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Properties;
 import java.util.concurrent.ExecutionException;
 
 import static com.surabi.restaurants.constants.KafkaConstants.KAFKA_TOPIC;
@@ -16,22 +21,30 @@ import static com.surabi.restaurants.constants.KafkaConstants.KAFKA_TOPIC;
 @RequestMapping("/surabi/chat-controller")
 public class ChatController {
 
-    @Autowired
-    private KafkaTemplate<String, Message> kafkaTemplate;
+
 
 
     @Autowired
     KafkaConsumerExample kafkaConsumerExample;
 
 
-    @PostMapping(value = "/api/send", consumes = "application/json", produces = "application/json")
-    public void sendMessage(@RequestBody Message message) {
-        message.setTimestamp(LocalDateTime.now().toString());
+    @PostMapping(value = "/api/send")
+    public void sendMessage() {
+        Properties kafkaProps = new Properties();
+
         try {
-            System.out.println("Sending the message to kafka topic queue");
-            kafkaTemplate.send(KAFKA_TOPIC, message).get();
-        } catch (InterruptedException | ExecutionException e) {
-            throw new RuntimeException(e);
+            kafkaProps.load(new FileReader("producer.properties"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        KafkaProducer<String,String> producer = new KafkaProducer<>(kafkaProps);
+        ProducerRecord<String, String> record = new ProducerRecord<String, String>("demo-topic","my-key", "test");
+        //message.setTimestamp(LocalDateTime.now().toString());
+        try{
+            producer.send(record);
+            producer.flush();
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
 
