@@ -1,7 +1,7 @@
 Week13:
 
 Configure the Kafka
-1. please download kafka and place under below path(https://mirrors.estointernet.in/apache/kafka/2.8.0/kafka_2.13-2.8.0.tgz)
+1. please download kafka (https://mirrors.estointernet.in/apache/kafka/2.8.0/kafka_2.13-2.8.0.tgz)
    https://kafka.apache.org/downloads
 2. unzip and place under C:\kafka, example below
    Folder structure: 
