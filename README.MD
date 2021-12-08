@@ -42,12 +42,28 @@ Time to run project:
       keytool -import -file "C:\Users\MS\Desktop\user.cer" -keystore "C:\Program Files\Java\jdk1.8.0_191\jre\lib\security\cacerts" -alias "edu2 certificate"
 
 8. Create a postgres DB ("shurabhi21"), script in SQL file in the root path.
-9. Start chat API in IDE (CHAT-SERVICE)
+9. Start ALL APIs in IDE one by one (this will start with https)
    shurabhi - chat -> https://localhost:9994/swagger-ui.html#
+   shurabhi-discount -> https://localhost:9996/discount/getDiscount/50/GET50PER
+   shurabhi-user -> https://localhost:9998/swagger-ui.html#/users-controller
+   shurabhi-offline -> https://localhost:9995/swagger-ui.html#/offline-controller
+   shurabhi-admin -> https://localhost:9999/swagger-ui.html#/admin-controller
 
-10. In order to test massage, you can follow Week12:   
-![img_4.png](img_4.png)
+10. In order to send, you need to login first (as user or admin)
+11. you can send message to admin or user
+12. To send message to admin, to='ADMIN' sample below
+   {
+   "content": "Hey Admin",
+   "from": "Suresh",
+   "timestamp": "string",
+   "to": "ADMIN"
+   }
+   
+13. To send msg to other user, you can specify the user name in to perimeter
+14. to consume admin messages, you need to have a admin role, login with admin users to see admin messages
+15. to consumer the messages of a specific user, you need to login with that user(if i want to read messages sent to Ramesh, i need to login first as Ramesh to see my messages)
 
+INFO: 
 Steps used to generate certificates:
 Generate all certificate using belowcommand
 example for chat
