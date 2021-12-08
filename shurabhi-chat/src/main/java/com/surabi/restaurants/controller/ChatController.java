@@ -28,17 +28,20 @@ public class ChatController {
     KafkaConsumerExample kafkaConsumerExample;
 
 
-    @PostMapping(value = "/api/send")
-    public void sendMessage() {
+    @PostMapping(value = "/api/send", consumes = "application/json", produces = "application/json")
+    public void sendMessage(@RequestBody Message message) {
+        message.setTimestamp(LocalDateTime.now().toString());
         Properties kafkaProps = new Properties();
+        kafkaProps.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
+        kafkaProps.put("value.serializer", "org.apache.kafka.connect.json.JsonSerializer");
 
         try {
             kafkaProps.load(new FileReader("producer.properties"));
         } catch (IOException e) {
             e.printStackTrace();
         }
-        KafkaProducer<String,String> producer = new KafkaProducer<>(kafkaProps);
-        ProducerRecord<String, String> record = new ProducerRecord<String, String>("demo-topic","my-key", "test");
+        KafkaProducer<String,Message> producer = new KafkaProducer<>(kafkaProps);
+        ProducerRecord<String, Message> record = new ProducerRecord<>("demo-topic", message);
         //message.setTimestamp(LocalDateTime.now().toString());
         try{
             producer.send(record);
