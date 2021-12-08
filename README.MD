@@ -7,9 +7,9 @@ Configure the Kafka
    Folder structure: 
    ![img_5.png](img_5.png)
 
-3. Replace confi folder inside C:\kafka with folder from project config.
+3. Replace config folder inside C:\kafka with folder from this project config (shurabhi-microServiceAPIs\config)
 
-4. open cmd  C:\kafka and run below commands:
+4. open cmd  from path C:\kafka and run below commands:
 5.  Start Zookeeper :
    .\bin\windows\zookeeper-server-start.bat .\config\zookeeper.properties   
 6. open another window and run below 
@@ -30,10 +30,10 @@ Configure the Kafka
    ---- ignore warning
 
 Time to run project:
-1.start shurabhi-server:
+1.start shurabhi-server in IDE:
 2. go to https://localhost:8761/
 3. download certificate
-4. import Euraka using below with admin permission
+4. import Euraka certificate in local machine using below with admin permission
    keytool -import -file "C:\Users\MS\Desktop\edu2.cer" -keystore "C:\Program Files\Java\jdk1.8.0_191\jre\lib\security\cacerts" -alias "edu2 certificate"
 
 5. go to https://localhost:9998/swagger-ui.html#
@@ -42,12 +42,7 @@ Time to run project:
       keytool -import -file "C:\Users\MS\Desktop\user.cer" -keystore "C:\Program Files\Java\jdk1.8.0_191\jre\lib\security\cacerts" -alias "edu2 certificate"
 
 8. Create a postgres DB ("shurabhi21"), script in SQL file in the root path.
-9. Start all APIs (ADMIN-SERVICE, CHAT-SERVICE, DISCOUNT-SERVICE, OFFLINE-SERVICE, USER-SERVICE)
-   shurabhi-server -> https://localhost:8761/
-   shurabhi-discount -> https://localhost:9996/discount/getDiscount/50/GET50PER
-   shurabhi-user -> https://localhost:9998/swagger-ui.html#/users-controller
-   shurabhi-offline -> https://localhost:9995/swagger-ui.html#/offline-controller
-   shurabhi-admin -> https://localhost:9999/swagger-ui.html#/admin-controller
+9. Start chat API in IDE (CHAT-SERVICE)
    shurabhi - chat -> https://localhost:9994/swagger-ui.html#
 
 10. In order to test massage, you can follow Week12:   
