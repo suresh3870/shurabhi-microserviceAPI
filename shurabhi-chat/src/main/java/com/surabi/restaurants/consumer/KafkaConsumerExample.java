@@ -8,6 +8,8 @@ import org.springframework.kafka.support.serializer.JsonDeserializer;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -49,13 +51,32 @@ public class KafkaConsumerExample {
         return consumer;
     }
      public List<Message> runConsumer() throws InterruptedException {
-         Consumer<Integer, Message> consumer = createConsumer();
+
+         Properties kafkaProps = new Properties();
+
+         try {
+             kafkaProps.load(new FileReader("consumer.properties"));
+         } catch (IOException e) {
+             e.printStackTrace();
+         }
+         kafkaProps.put(JsonDeserializer.TRUSTED_PACKAGES, "com.surabi.restaurants.model");
+         if (UserLoggedDetailsImpl.getUserRole().equals("[ADMIN]")){
+             kafkaProps.put(ConsumerConfig.GROUP_ID_CONFIG,
+                     "ADMIN");}
+         else
+         {
+             String group_id= UserLoggedDetailsImpl.getUserName();
+             kafkaProps.put(ConsumerConfig.GROUP_ID_CONFIG,
+                     group_id);
+         }
+         KafkaConsumer<String,Message> consumer = new KafkaConsumer<>(kafkaProps);
+         consumer.subscribe(Collections.singleton("demo-topic"));
 
         final int giveUp = 2;   int noRecordsCount = 0;
          List<Message> msgs=new ArrayList<>();
 
         while (true) {
-            final ConsumerRecords<Integer, Message> consumerRecords =
+            final ConsumerRecords<String, Message> consumerRecords =
                     consumer.poll(1000);
 
             if (consumerRecords.count()==0) {
@@ -64,7 +85,7 @@ public class KafkaConsumerExample {
                 else continue;
             }
 
-            for(ConsumerRecord<Integer,Message> record: consumerRecords){
+            for(ConsumerRecord<String,Message> record: consumerRecords){
                 //System.out.println(record.value().getTo());
 
                if ((record.value().getTo().equals(UserLoggedDetailsImpl.getUserName())) ||
