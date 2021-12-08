@@ -1,5 +1,35 @@
 Week13:
-To run project:
+
+Configure the Kafka
+1. please download kafka and place under below path(https://mirrors.estointernet.in/apache/kafka/2.8.0/kafka_2.13-2.8.0.tgz)
+   https://kafka.apache.org/downloads
+2. unzip and place under C:\kafka, example below
+   Folder structure: 
+   ![img_5.png](img_5.png)
+
+3. Replace confi folder inside C:\kafka with folder from project config.
+
+4. open cmd  C:\kafka and run below commands:
+5.  Start Zookeeper :
+   .\bin\windows\zookeeper-server-start.bat .\config\zookeeper.properties   
+6. open another window and run below 
+   set KAFKA_OPTS=-Djava.security.auth.login.config=C:\kafka\config\kafka_server_jaas.conf 
+   
+7. Start kafka server 
+   .\bin\windows\kafka-server-start.bat .\config\server.properties
+8. Run below commands one by one
+   .\bin\windows\kafka-configs.bat --zookeeper localhost:2181 --alter --add-config SCRAM-SHA-512=[password=admin-secret] --entity-type users --entity-name admin
+   .\bin\windows\kafka-configs.bat --zookeeper localhost:2181 --alter --add-config SCRAM-SHA-512=[password=secret] --entity-type users --entity-name demouser
+   set KAFKA_OPTS=-Djava.security.auth.login.config=C:\kafka\config\kafka_server_jaas.conf
+   .\bin\windows\kafka-acls.bat --authorizer-properties zookeeper.connect=localhost:2181 --add --allow-principal User:demouser --operation Create --operation Describe  --topic demo-topic
+      ---- ignore warning
+   .\bin\windows\kafka-topics.bat --create --bootstrap-server localhost:9094 --command-config .\config\ssl-user-config.properties --replication-factor 1 --partitions 1 --topic demo-topic
+   .\bin\windows\kafka-acls.bat --authorizer-properties zookeeper.connect=localhost:2181 --add --allow-principal User:demouser --producer --topic demo-topic
+   ---- ignore warning
+   .\bin\windows\kafka-acls.bat --authorizer-properties zookeeper.connect=localhost:2181 --add --allow-principal User:demouser1 --consumer --topic demo-topic --group "*"
+   ---- ignore warning
+
+Time to run project:
 1.start shurabhi-server:
 2. go to https://localhost:8761/
 3. download certificate
@@ -19,7 +49,8 @@ To run project:
    shurabhi-offline -> https://localhost:9995/swagger-ui.html#/offline-controller
    shurabhi-admin -> https://localhost:9999/swagger-ui.html#/admin-controller
    shurabhi - chat -> https://localhost:9994/swagger-ui.html#
-   
+
+10. In order to test massage, you can follow Week12:   
 ![img_4.png](img_4.png)
 
 Steps used to generate certificates:
